@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
           seedColor: const Color.fromARGB(255, 147, 229, 250),
-          surface: const Color.fromARGB(255, 42, 51, 29),
         ),
       ),
       home: const GroceriesScreen(),
