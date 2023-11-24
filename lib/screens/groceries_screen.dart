@@ -17,8 +17,8 @@ class GroceriesScreen extends StatelessWidget {
           return ListTile(
             key: ValueKey(grocery),
             leading: Container(
-              width: 25,
-              height: 25,
+              width: 24,
+              height: 24,
               color: grocery.category.color,
             ),
             title: Text(grocery.name),
