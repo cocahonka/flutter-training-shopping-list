@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/dummy_items.dart';
 import 'package:shopping_list/screens/new_item_screen.dart';
+import 'package:shopping_list/widgets/groceries_item.dart';
 
 class GroceriesScreen extends StatefulWidget {
   const GroceriesScreen({super.key});
@@ -36,16 +37,7 @@ class _GroceriesScreenState extends State<GroceriesScreen> {
         itemCount: kGroceryItems.length,
         itemBuilder: (context, index) {
           final grocery = kGroceryItems[index];
-          return ListTile(
-            key: ValueKey(grocery),
-            leading: Container(
-              width: 24,
-              height: 24,
-              color: grocery.category.color,
-            ),
-            title: Text(grocery.name),
-            trailing: Text(grocery.quantity.toString()),
-          );
+          return GroceriesItem(grocery: grocery);
         },
       ),
     );
