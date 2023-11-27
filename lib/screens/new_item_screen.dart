@@ -2,8 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/extensions/capitalize.dart';
 import 'package:shopping_list/models/category.dart';
 
-class NewItemScreen extends StatelessWidget {
+class NewItemScreen extends StatefulWidget {
   const NewItemScreen({super.key});
+
+  @override
+  State<NewItemScreen> createState() => _NewItemScreenState();
+}
+
+class _NewItemScreenState extends State<NewItemScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  void _saveItem() {
+    _formKey.currentState!.validate();
+  }
+
+  void _resetForm() {
+    _formKey.currentState!.reset();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +29,7 @@ class NewItemScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               TextFormField(
@@ -84,11 +100,11 @@ class NewItemScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: _resetForm,
                       child: const Text('Reset'),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _saveItem,
                       child: const Text('Add Item'),
                     ),
                   ],
