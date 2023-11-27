@@ -30,7 +30,7 @@ class _GroceriesScreenState extends State<GroceriesScreen> {
           IconButton(
             onPressed: _addNewItem,
             icon: const Icon(Icons.add),
-          )
+          ),
         ],
       ),
       body: ListView.builder(
