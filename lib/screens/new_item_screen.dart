@@ -11,9 +11,14 @@ class NewItemScreen extends StatefulWidget {
 
 class _NewItemScreenState extends State<NewItemScreen> {
   final _formKey = GlobalKey<FormState>();
+  var _enteredName = '';
+  var _enteredQuantity = 1;
+  var _selectedCategory = Category.vegetables;
 
   void _saveItem() {
-    _formKey.currentState!.validate();
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    }
   }
 
   void _resetForm() {
@@ -43,6 +48,7 @@ class _NewItemScreenState extends State<NewItemScreen> {
                   }
                   return null;
                 },
+                onSaved: (value) => _enteredName = value!,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -63,12 +69,14 @@ class _NewItemScreenState extends State<NewItemScreen> {
                         }
                         return null;
                       },
+                      onSaved: (value) => _enteredQuantity = int.parse(value!),
                     ),
                   ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: DropdownButtonFormField(
+                        value: _selectedCategory,
                         items: [
                           for (final category in Category.values)
                             DropdownMenuItem(
@@ -88,7 +96,11 @@ class _NewItemScreenState extends State<NewItemScreen> {
                               ),
                             ),
                         ],
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedCategory = value!;
+                          });
+                        },
                       ),
                     ),
                   ),
