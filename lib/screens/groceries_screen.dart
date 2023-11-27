@@ -41,13 +41,23 @@ class _GroceriesScreenState extends State<GroceriesScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: _groceriesItems.length,
-        itemBuilder: (context, index) {
-          final grocery = _groceriesItems[index];
-          return GroceriesItem(grocery: grocery);
-        },
-      ),
+      body: _groceriesItems.isNotEmpty
+          ? ListView.builder(
+              itemCount: _groceriesItems.length,
+              itemBuilder: (context, index) {
+                final grocery = _groceriesItems[index];
+                return Dismissible(
+                  key: ValueKey(grocery.id),
+                  onDismissed: (_) {
+                    setState(() {
+                      _groceriesItems.remove(grocery);
+                    });
+                  },
+                  child: GroceriesItem(grocery: grocery),
+                );
+              },
+            )
+          : const Center(child: Text('Not items added yet.')),
     );
   }
 }
