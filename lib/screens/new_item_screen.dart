@@ -69,6 +69,22 @@ class NewItemScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('Reset'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Add Item'),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
